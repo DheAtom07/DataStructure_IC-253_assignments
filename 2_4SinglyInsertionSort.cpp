@@ -59,21 +59,29 @@ Node* insertionSort(Node* Head)
 {
     Node* current=Head;
     Head=NULL;
+    int noOfSwaps=0,noOfComparisons=0;
+
     while (current!=NULL){
         Node* nextPointer=current->next;
         if (Head==NULL || current->value<=Head->value){
+            noOfSwaps++;
             current->next=Head;
             Head=current;
         }else{
+            noOfComparisons+=1;
             Node* temp=Head;
             while (temp->next!=NULL && temp->next->value<current->value){
                 temp=temp->next;
+                noOfComparisons++;
             }
             current->next=temp->next;
             temp->next=current;
+            noOfSwaps++;
         }
         current=nextPointer;
     }
+    cout<<"No of comparisons : "<<noOfComparisons<<endl;
+    cout<<"No of swaps : "<<noOfSwaps<<endl;
     return Head;
 }
 
