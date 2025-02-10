@@ -55,6 +55,28 @@ void insertAtKthPosition(Node* &Head, int k, int v)
     }
 }
 
+Node* insertionSort(Node* Head)
+{
+    Node* current=Head;
+    Head=NULL;
+    while (current!=NULL){
+        Node* nextPointer=current->next;
+        if (Head==NULL || current->value<=Head->value){
+            current->next=Head;
+            Head=current;
+        }else{
+            Node* temp=Head;
+            while (temp->next!=NULL && temp->next->value<current->value){
+                temp=temp->next;
+            }
+            current->next=temp->next;
+            temp->next=current;
+        }
+        current=nextPointer;
+    }
+    return Head;
+}
+
 void deleteHead(Node* &Head)
 {
     if (Head==NULL) {return;}
@@ -114,4 +136,6 @@ int main(){
     deleteKthPosition(Head,18);
     cout<<"After deleting kth element.";
     display(Head);
+    cout<<"After sorting..... : ";
+    display(insertionSort(Head));
 }

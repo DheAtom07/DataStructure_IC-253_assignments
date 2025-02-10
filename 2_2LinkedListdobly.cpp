@@ -60,16 +60,19 @@ void insertAtKthPosition(Node* &Head,Node* &Back,int k,int j)
 }
 void deleteHead(Node* &Head)
 {
+    if (Head==NULL){return;}
     Head=Head->next;
     Head->previous=NULL;
 }
 void deleteTail(Node* &Back)
 {
+    if (Back==NULL){return;}
     Back=Back->previous;
     Back->next=NULL;
 }
 void deleteKthPosition(Node* &Head,int k)
 {
+    if (Head==NULL){return;}
     if (k==1) {deleteHead(Head);} else {
         Node* iter=Head;
         for(int i=1;i<k-1;i++){

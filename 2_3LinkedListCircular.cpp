@@ -61,6 +61,14 @@ void insertAtTail(Node* &Head,Node* &Back,int v)
 }
 void insertAtKthPosition(Node* &Head,Node* &Back, int k, int v)
 {
+    int lenLL=1;
+    if(k!=0 || k!=1){
+    Node* temp1=Head;
+    while (temp1->next!=Head){
+        lenLL++;
+        temp1=temp1->next;
+    }
+    k=k%lenLL;}
     Node* iter=Head;
     if (Head==NULL && k==1){
         insertFirstElement(Head,Back,v);
@@ -105,6 +113,14 @@ void deleteTail(Node* Head,Node* &Back)
 }
 void deleteKthPosition(Node* &Head,Node* Back,int k)
 {
+    int lenLL=1;
+    if(k!=0 || k!=1){
+    Node* temp1=Head;
+    while (temp1->next!=Head){
+        lenLL++;
+        temp1=temp1->next;
+    }
+    k=k%lenLL;}
     if (k==1){
         deleteHead(Head,Back);
     }else{
@@ -157,15 +173,15 @@ int main(){
     for(int i=0;i<10;i++){
         insertAtHead(Head,Back,i);
     }
-    for(int i=0;i<10;i++){
-        insertAtTail(Head,Back,i+20);
-    }
+    // for(int i=0;i<10;i++){
+        // insertAtTail(Head,Back,i+20);
+    // }
     display(Head,20);
     displayKthTillk_1(Head,Back,4);
-    insertAtKthPosition(Head,Back,1,69);
+    insertAtKthPosition(Head,Back,21,69);
     display(Head,30);
     deleteHead(Head,Back);
     deleteTail(Head,Back);
-    deleteKthPosition(Head,Back,1);
+    deleteKthPosition(Head,Back,23);
     display(Head,60);
 }
