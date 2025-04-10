@@ -57,15 +57,35 @@ Node* deleteHighestPriorityElement(Node* Root){
     return temp;
 }
 
+Node* searchElement(Node* Root,int k){
+    Node* iter=Root;
+    while(iter!=nullptr && iter->value!=k){
+        if(iter->value<=k){
+            iter=iter->right;
+        }else{
+            iter=iter->left;
+        }
+    }
+    return iter;
+}
+
 int main(){
     Node* Root=nullptr;
     for(int i=0;i<10;i++){
         insertElement(Root,10-i,i);
     }
-    insertElement(Root,100,50);
+    insertElement(Root,100,-1);
     inorderPrint(Root);
     cout<<endl;
+    for(int j=0;j<5;j++){
     Node* temp=deleteHighestPriorityElement(Root);
     cout<<temp->value<<"("<<temp->priority<<")";
     cout<<endl;
+    }
+    Node* temp2=searchElement(Root,100);
+    if(temp2==nullptr){
+        cout<<"Value Not found";
+    }else{
+        cout<<temp2;
+    }
 }
